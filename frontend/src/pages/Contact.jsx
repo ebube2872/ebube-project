@@ -3,7 +3,7 @@ function Contact() {
         <div className="relative min-h-screen overflow-hidden text-white">
             <video
             className="absolute inset-0 h-full w-full object-cover"
-            src="/picture5.jpg.mp4"
+            src="/picture4.jpg.mp4"
             autoPlay
             loop
             muted
