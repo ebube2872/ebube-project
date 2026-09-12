@@ -16,27 +16,20 @@ function SignUp() {
       alert("Passwords do not match");
       return;
     }
-    console.log({name,email,phone,password});
+    const user = {
+      name,
+      email,
+      phone,
+      password,
+    };
 
-    const response = await fetch ("http://localhost:5000/api/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        phone,
-      }),
-    });
-    const data = await response.json();
-    if (response.ok) {
-      console.log(data);
-      console.log("SIGNUP SUCCESS");
-      navigate("/login")
-      
-    }
+    localStorage.setItem("user", JSON.stringify(user));
+
+    console.log("SIGNUP SUCCESS");
+
+    alert("Signup successful!");
+
+    navigate("/login")
     
   };
     return (

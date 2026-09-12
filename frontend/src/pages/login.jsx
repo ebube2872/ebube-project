@@ -9,27 +9,23 @@ const navigate = useNavigate();
   const handleLogin = async (e) =>{
     e.preventDefault();
 
-    const response =await fetch ("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    const savedUser = JSON.parse(localStorage.getItem("user"));
 
-    const data= await response.json();
-    console.log("LOGIN DATA",data);
-    if (response.ok) {
-      localStorage.setItem("token", data.token);
-      alert("Login successful");
-      navigate("/")
-    }else {
-      alert(data.message||"Login failed")
+    if(!savedUser) {
+      alert ("No account found. Please sign up first.");
+      return;
     }
-  }
+
+    if (email === savedUser.email && password === savedUser.password){
+      localStorage.setItem("token", "logged-in");
+
+      alert("Login successful!");
+
+      navigate("/");
+    }else{
+      alert ("Invalid email or password.")
+    }
+  };
     return (
         <div className="relative min-h-screen overflow-hidden text-white">
           <img
